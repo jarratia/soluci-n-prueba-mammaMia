@@ -14,7 +14,7 @@ const Card = () => {
           <div className="card">
             <img className="card-img-top" src={pizza.img} alt="" />
             <div className="card-body">
-              <h4 className="card-title text-capitalize">{pizza.name}</h4>
+              <h4 className="card-title text-capitalize">Pizza {pizza.name}</h4>
               <hr />
               <p className="card-text">
                 <b>Ingredientes:</b>
@@ -22,27 +22,25 @@ const Card = () => {
 
               <ul>
                 {pizzas.map((pizza, i) => (
-                  <li key={i}>{pizza.ingredients[i]}</li>
+                  <li key={pizza.id}>&#127829; {pizza.ingredients[i]}</li>
                 ))}
               </ul>
             </div>
-            <hr />
-            <div className="card-body">
-              <h2 className="text-center text-dark pb-3">
-                $ {formatNumber(pizza.price)}
-              </h2>
 
-              <div className="d-flex justify-content-around">
-                <button
-                  to={`pizza/${pizza.id}`}
-                  className="btn btn-info text-white"
-                  onClick={() => navigate(`/pizzas/${pizza.id}`)}
-                >
-                  Ver Más &#128064;
-                </button>
+            <h2 className="text-center text-dark pb-3">
+              Precio: ${formatNumber(pizza.price)}
+            </h2>
 
-                <button className="btn btn-danger">Añadir &#128722;</button>
-              </div>
+            <div className="d-flex justify-content-around mb-4">
+              <button
+                to={`pizza/${pizza.id}`}
+                className="btn btn-info text-white"
+                onClick={() => navigate(`/pizzas/${pizza.id}`)}
+              >
+                Ver Más &#128064;
+              </button>
+
+              <button className="btn btn-danger">Añadir &#128722;</button>
             </div>
           </div>
         </div>
