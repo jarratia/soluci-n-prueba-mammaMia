@@ -1,18 +1,23 @@
-import Card from './components/Card';
-import Header from './components/Header';
-import Navbar from './components/Navbar';
-import PizzasList from './Containers/PizzasList';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { PizzasProvider } from './context/PizzasProvider';
+import Detalle from './pages/Detalle';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <PizzasProvider>
-      <Navbar />
-      <Header />
-      <PizzasList>
-        <Card />
-      </PizzasList>
-    </PizzasProvider>
+    <BrowserRouter>
+      <PizzasProvider>
+        <Routes>
+          <Route path="pizzas/">
+            <Route path=":id" element={<Detalle />} />
+          </Route>
+
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </PizzasProvider>
+    </BrowserRouter>
   );
 }
 
