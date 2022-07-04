@@ -8,7 +8,6 @@ const Home = () => {
     <>
       <Navbar />
       <Header />
-
       <PizzasList>
         <Card />
       </PizzasList>
