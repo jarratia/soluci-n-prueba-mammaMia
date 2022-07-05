@@ -4,9 +4,11 @@ import PizzasContext from '../context/PizzasProvider';
 import { formatNumber } from '../helpers/formatNumber';
 
 const Card = () => {
-  const { pizzas } = useContext(PizzasContext);
+  // const [total, setTotal] = useState(0);
+  const { pizzas, addToCart } = useContext(PizzasContext);
 
   const navigate = useNavigate();
+
   return (
     <>
       {pizzas.map((pizza) => (
@@ -21,8 +23,8 @@ const Card = () => {
               </p>
 
               <ul>
-                {pizzas.map((pizza, i) => (
-                  <li key={pizza.id}>&#127829; {pizza.ingredients[i]}</li>
+                {pizza.ingredients.map((ingredient, i) => (
+                  <li key={i}>&#127829; {ingredient}</li>
                 ))}
               </ul>
             </div>
@@ -40,7 +42,13 @@ const Card = () => {
                 Ver Más &#128064;
               </button>
 
-              <button className="btn btn-danger">Añadir &#128722;</button>
+              <button
+                className="btn btn-danger"
+                onClick={() => addToCart(pizza)}
+                // onChange={() => setTotal(pizza.price)}
+              >
+                Añadir &#128722;
+              </button>
             </div>
           </div>
         </div>

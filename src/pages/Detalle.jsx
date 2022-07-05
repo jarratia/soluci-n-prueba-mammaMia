@@ -10,20 +10,15 @@ const Detalle = () => {
   const { pizzas } = useContext(PizzasContext);
   const { id } = useParams();
 
-  //   pizzas.forEach((pizza) => {
-  //     pizza.ingredients.forEach((i) => {
-  //       console.log(i);
-  //     });
-  //   });
+  const obtenerDatos = () => {
+    const datosPizza = pizzas.find((pizza) => pizza.id === id);
+
+    setPizzaDetail(datosPizza || {});
+  };
 
   useEffect(() => {
-    const obtenerDatos = () => {
-      const datosPizza = pizzas.find((pizza) => pizza.id === id);
-
-      setPizzaDetail(datosPizza);
-    };
     obtenerDatos();
-  }, []);
+  }, [pizzas]);
 
   return (
     <>
@@ -35,7 +30,7 @@ const Detalle = () => {
               <img
                 src={pizzaDetail.img}
                 className="img-fluid estilos rounded-start"
-                alt="..."
+                alt={pizzaDetail.name}
               />
             </div>
             <div className="col-md-6">
@@ -45,8 +40,8 @@ const Detalle = () => {
                 </h5>
                 <p className="card-text">{pizzaDetail.desc}</p>
                 <ul>
-                  {pizzas.map((pizza, i) => (
-                    <li key={pizza.id}>&#127829; {pizza.ingredients[i]}</li>
+                  {pizzaDetail.ingredients?.map((ingredient, i) => (
+                    <li key={i}>&#127829; {ingredient}</li>
                   ))}
                 </ul>
                 <div className="d-flex justify-content-around">
