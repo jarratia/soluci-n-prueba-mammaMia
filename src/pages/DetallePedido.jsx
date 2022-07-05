@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import PizzasContext from '../context/PizzasProvider';
 
@@ -6,16 +6,6 @@ const DetallePedido = () => {
   const [contador, setContador] = useState(0);
   const [total, setTotal] = useState(0);
   const { carrito } = useContext(PizzasContext);
-
-  const increment = () => {
-    setContador(contador + 1);
-  };
-
-  const decrement = () => {
-    setContador(contador - 1);
-  };
-
-  console.log(carrito);
 
   return (
     <>
@@ -35,14 +25,14 @@ const DetallePedido = () => {
                   <h6 className="mb-0 p-2 text-success">${pizza.price}</h6>
                   <button
                     className="btn btn-danger"
-                    onClick={() => decrement()}
+                    onClick={() => setContador(contador - 1)}
                   >
                     -
                   </button>
                   <b className="mx-2">{contador}</b>
                   <button
                     className="btn btn-primary"
-                    onClick={() => increment()}
+                    onClick={() => setContador(contador + 1)}
                   >
                     +
                   </button>
